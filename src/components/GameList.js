@@ -18,7 +18,7 @@ class GameList extends Component {
     });
     console.log(this.state.data);
   }
-  //
+
   // componentDidMount() {
   //   axios.get(`zyqh9s9xt4.execute-api.eu-west-1.amazonaws.com/prod/battles`)
   //     .then(res => {

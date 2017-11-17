@@ -1,4 +1,4 @@
-const baseURL = 'zyqh9s9xt4.execute-api.eu-west-1.amazonaws.com/prod';
+// const baseURL = 'zyqh9s9xt4.execute-api.eu-west-1.amazonaws.com/prod';
 
 function request(baseURL) {
   return fetch(baseURL, {
