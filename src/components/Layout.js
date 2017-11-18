@@ -8,15 +8,15 @@ import '../assets/style.scss';
 
 class Layout extends Component {
   componentWillMount() {
-    axios.get('https://zyqh9s9xt4.execute-api.eu-west-1.amazonaws.com/prod/battle', {
+    axios.get('/battle', {
       headers: {
           'x-api-key': process.env.X_API_KEY
       }
   })
-  .then(function (response) {
+  .then( response=> {
     console.log(response);
   })
-  .catch(function (error) {
+  .catch( error=> {
     console.log(error);
   });
   }

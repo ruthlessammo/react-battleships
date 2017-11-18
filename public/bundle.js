@@ -18985,7 +18985,7 @@ var Layout = function (_Component) {
   _createClass(Layout, [{
     key: 'componentWillMount',
     value: function componentWillMount() {
-      _axios2.default.get('https://zyqh9s9xt4.execute-api.eu-west-1.amazonaws.com/prod/battle', {
+      _axios2.default.get('/battle', {
         headers: {
           'x-api-key': process.env.X_API_KEY
         }
