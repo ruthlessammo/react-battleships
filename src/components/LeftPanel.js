@@ -5,11 +5,12 @@ import ReactDOM from 'react-dom';
 class LeftPanel extends Component {
   render() {
 
-    const { newBattle, allBattles } = this.props;
+    const { newBattle, allBattles, setSelected } = this.props;
+
     const battleList = allBattles.map((battle, key) => {
-      const { battleId } = battle
+      const { battleId } = battle;
       return (
-        <li key={ key }>{ battleId }</li>
+        <li onClick={()=> setSelected(battleId) } key={ key }>{ battleId }</li>
       )
     })
     return (
@@ -24,11 +25,16 @@ class LeftPanel extends Component {
 }
 
 LeftPanel.PropTypes = {
-  newBattle: PropTypes.func
+  newBattle: PropTypes.func,
+  selectBattle: PropTypes.func,
+  allBattles: PropTypes.array
 }
 
 LeftPanel.defaultProps = {
   newBattle: () => {
+    return false
+  },
+  selectBattle: () => {
     return false
   },
   allBattles: []

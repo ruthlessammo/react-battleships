@@ -19021,6 +19021,7 @@ var Layout = function (_Component) {
     value: function selectBattle(id) {
       var _this4 = this;
 
+      console.log(id);
       _axios2.default.get('/battle/' + id).then(function (res) {
         var data = res.data;
 
@@ -19031,7 +19032,6 @@ var Layout = function (_Component) {
     key: 'componentWillMount',
     value: function componentWillMount() {
       this.getBattles();
-      this.selectBattle('5a106a3d5ba772000128c875');
     }
   }, {
     key: 'render',
@@ -19055,7 +19055,8 @@ var Layout = function (_Component) {
         { className: 'wrapper' },
         _react2.default.createElement(_LeftPanel2.default, {
           newBattle: this.newBattle.bind(this),
-          allBattles: allBattles
+          allBattles: allBattles,
+          setSelected: this.selectBattle.bind(this)
         }),
         selectBattle ? _react2.default.createElement(
           'ul',
@@ -20008,14 +20009,18 @@ var LeftPanel = function (_Component) {
     value: function render() {
       var _props = this.props,
           newBattle = _props.newBattle,
-          allBattles = _props.allBattles;
+          allBattles = _props.allBattles,
+          setSelected = _props.setSelected;
+
 
       var battleList = allBattles.map(function (battle, key) {
         var battleId = battle.battleId;
 
         return _react2.default.createElement(
           'li',
-          { key: key },
+          { onClick: function onClick() {
+              return setSelected(battleId);
+            }, key: key },
           battleId
         );
       });
@@ -20040,11 +20045,16 @@ var LeftPanel = function (_Component) {
 }(_react.Component);
 
 LeftPanel.PropTypes = {
-  newBattle: _propTypes2.default.func
+  newBattle: _propTypes2.default.func,
+  selectBattle: _propTypes2.default.func,
+  allBattles: _propTypes2.default.array
 };
 
 LeftPanel.defaultProps = {
   newBattle: function newBattle() {
+    return false;
+  },
+  selectBattle: function selectBattle() {
     return false;
   },
   allBattles: []

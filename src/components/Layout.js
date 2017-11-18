@@ -37,6 +37,7 @@ class Layout extends Component {
   }
 
   selectBattle(id) {
+    console.log(id);
     axios.get(`/battle/${id}`)
     .then( res=> {
       const { data } = res;
@@ -46,7 +47,6 @@ class Layout extends Component {
 
   componentWillMount() {
     this.getBattles();
-    this.selectBattle('5a106a3d5ba772000128c875')
   }
 
   render() {
@@ -55,7 +55,7 @@ class Layout extends Component {
 
     if (selectBattle) {
       const { battle} = selectBattle;
-      
+
       battleFieldGrid = battle.battlefield.map((row, key) => {
         return(
           <Row key={ key } battleFieldRow={ row }/>
@@ -67,6 +67,7 @@ class Layout extends Component {
         <LeftPanel
           newBattle={ this.newBattle.bind(this) }
           allBattles={ allBattles }
+          setSelected={ this.selectBattle.bind(this) }
         />
 
         { selectBattle ?
