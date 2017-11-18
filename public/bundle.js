@@ -19031,10 +19031,12 @@ var Layout = function (_Component) {
   }, {
     key: 'shoot',
     value: function shoot(id, data) {
-      _axios2.default.post('/battle/' + id + '/fire', { data: data }).then(function (response) {
-        console.log(response);
-      }).catch(function (error) {
-        console.log(error);
+      var _this5 = this;
+
+      console.log(id);
+      _axios2.default.post('/battle/' + id + '/fire', { data: data }).then(function (res) {
+        var selectBattle = Object.assign({}, res.data.battle, { battleId: id });
+        _this5.setState({ selectBattle: Object.assign({}, { battle: res.data.battle }, { battleId: id }) });
       });
     }
   }, {
@@ -19045,7 +19047,7 @@ var Layout = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _this5 = this;
+      var _this6 = this;
 
       var _state = this.state,
           allBattles = _state.allBattles,
@@ -19062,7 +19064,7 @@ var Layout = function (_Component) {
             key: key,
             rowIndex: key,
             battleFieldRow: row,
-            shoot: _this5.shoot.bind(_this5),
+            shoot: _this6.shoot.bind(_this6),
             battleId: battleId
           });
         });
@@ -20732,7 +20734,7 @@ var Row = function (_Component) {
         return _react2.default.createElement(
           'li',
           { className: 'column', key: index, onClick: function onClick() {
-              return shoot(battleId, { "coordinate": [rowIndex, index] });
+              return shoot(battleId, { coordinate: [rowIndex, index] });
             } },
           rowStatus
         );

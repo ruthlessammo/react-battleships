@@ -12,7 +12,7 @@ class Row extends Component {
     const { battleFieldRow, shoot, rowIndex, battleId } = this.props
     const battleFieldRowList = battleFieldRow.map((rowStatus, index) => {
       // key = row index, index = col index
-      return <li className="column" key={index} onClick={() => shoot(battleId, { "coordinate": [rowIndex, index] } )}>{rowStatus}</li>
+      return <li className="column" key={index} onClick={() => shoot(battleId, { coordinate: [rowIndex, index] } )}>{rowStatus}</li>
     });
 
     return (

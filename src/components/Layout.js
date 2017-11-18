@@ -46,12 +46,11 @@ class Layout extends Component {
   }
 
   shoot(id, data) {
+    console.log(id);
     axios.post(`/battle/${id}/fire`, { data })
-      .then(response => {
-        console.log(response);
-      })
-      .catch(error => {
-        console.log(error);
+      .then(res => {
+        const selectBattle = Object.assign({}, res.data.battle, { battleId: id });
+        this.setState({ selectBattle: Object.assign({}, { battle: res.data.battle }, { battleId: id }) });
       });
   }
 

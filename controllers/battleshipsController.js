@@ -37,13 +37,16 @@ function getSelectedBattleship(req, res, next) {
 }
 
 function fireAction(req, res, next) {
-  console.log(req.body);
+  const { coordinate } = req.body.data;
   return rp.post({
-    url: `${url}/battle`,
-    data: req.body,
+    url: `${url}/battle/${req.params.id}/fire`,
+    body: {
+      coordinate
+    },
     headers: {
       'x-api-key': battleshipKey
-    }
+    },
+    json: true
   }).then( data => {
     res.json(data);
   })
