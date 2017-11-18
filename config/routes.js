@@ -5,4 +5,7 @@ router.route('/battle')
   .get(battleshipController.getBattleShips)
   .post(battleshipController.newBattleShips)
 
+router.route('/battle/:id')
+  .get(battleshipController.getSelectedBattleship);
+
 module.exports = router;

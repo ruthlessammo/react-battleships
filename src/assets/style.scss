@@ -1,3 +1,16 @@
 body {
   background-color: papayawhip;
+  display: flex;
+  font-family: monospace;
+  font-size: 15px;
+}
+.row {
+  display: flex;
+}
+
+.column {
+  display: inline-flex;
+  background-color: white;
+  border: 1px solid black;
+  padding: 20px;
 }

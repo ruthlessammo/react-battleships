@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 
 class LeftPanel extends Component {
@@ -22,9 +23,9 @@ class LeftPanel extends Component {
   }
 }
 
-// LeftPanel.propTypes = {
-//   newBattle: propTypes.func
-// }
+LeftPanel.PropTypes = {
+  newBattle: PropTypes.func
+}
 
 LeftPanel.defaultProps = {
   newBattle: () => {

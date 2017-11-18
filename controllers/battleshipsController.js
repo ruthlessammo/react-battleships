@@ -25,5 +25,16 @@ function newBattleShips(req, res, next) {
   .catch(next)
 }
 
+function getSelectedBattleship(req, res, next) {
+  return rp.get({
+    url: `${url}/battle/${req.params.id}`,
+    headers: {
+      'x-api-key': battleshipKey
+    }
+  })
+  .then( data => res.json(data))
+  .catch(next)
+}
 
-module.exports = { getBattleShips, newBattleShips }
+
+module.exports = { getBattleShips, newBattleShips, getSelectedBattleship }
