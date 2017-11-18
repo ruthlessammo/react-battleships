@@ -36,5 +36,19 @@ function getSelectedBattleship(req, res, next) {
   .catch(next)
 }
 
+function fireAction(req, res, next) {
+  console.log(req.body);
+  return rp.post({
+    url: `${url}/battle`,
+    data: req.body,
+    headers: {
+      'x-api-key': battleshipKey
+    }
+  }).then( data => {
+    res.json(data);
+  })
+  .catch(next)
+}
 
-module.exports = { getBattleShips, newBattleShips, getSelectedBattleship }
+
+module.exports = { getBattleShips, newBattleShips, getSelectedBattleship, fireAction }

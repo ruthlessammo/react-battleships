@@ -8,4 +8,6 @@ router.route('/battle')
 router.route('/battle/:id')
   .get(battleshipController.getSelectedBattleship);
 
+router.route('/battle/:id/fire')
+  .post(battleshipController.fireAction)
 module.exports = router;

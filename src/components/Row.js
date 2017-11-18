@@ -9,9 +9,10 @@ class Row extends Component {
   }
 
   render() {
-    const { battleFieldRow } = this.props
-    const battleFieldRowList = battleFieldRow.map((rowStatus, key) => {
-      return <li className="column" key={key}>{rowStatus}</li>
+    const { battleFieldRow, shoot, rowIndex, battleId } = this.props
+    const battleFieldRowList = battleFieldRow.map((rowStatus, index) => {
+      // key = row index, index = col index
+      return <li className="column" key={index} onClick={() => shoot(battleId, { "coordinate": [rowIndex, index] } )}>{rowStatus}</li>
     });
 
     return (
@@ -25,7 +26,8 @@ class Row extends Component {
 }
 
 Row.PropTypes = {
-  battleFieldRow: PropTypes.array
+  battleFieldRow: PropTypes.array,
+  shoot: PropTypes.func
 }
 
 Row.defaultProps = {

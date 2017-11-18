@@ -37,12 +37,22 @@ class Layout extends Component {
   }
 
   selectBattle(id) {
-    console.log(id);
+    // console.log(id);
     axios.get(`/battle/${id}`)
     .then( res=> {
       const { data } = res;
-      this.setState({ selectBattle: JSON.parse(data) });
+      this.setState({ selectBattle: Object.assign({}, JSON.parse(data), { battleId: id }) });
     })
+  }
+
+  shoot(id, data) {
+    axios.post(`/battle/${id}/fire`, { data })
+      .then(response => {
+        console.log(response);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 
   componentWillMount() {
@@ -54,11 +64,16 @@ class Layout extends Component {
     let battleFieldGrid;
 
     if (selectBattle) {
-      const { battle} = selectBattle;
-
+      const { battle, battleId } = selectBattle;
       battleFieldGrid = battle.battlefield.map((row, key) => {
         return(
-          <Row key={ key } battleFieldRow={ row }/>
+          <Row
+           key={ key }
+           rowIndex={ key }
+           battleFieldRow={ row }
+           shoot={ this.shoot.bind(this) }
+           battleId={ battleId }
+          />
         )
       })
     }

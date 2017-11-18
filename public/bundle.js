@@ -19021,11 +19021,20 @@ var Layout = function (_Component) {
     value: function selectBattle(id) {
       var _this4 = this;
 
-      console.log(id);
+      // console.log(id);
       _axios2.default.get('/battle/' + id).then(function (res) {
         var data = res.data;
 
-        _this4.setState({ selectBattle: JSON.parse(data) });
+        _this4.setState({ selectBattle: Object.assign({}, JSON.parse(data), { battleId: id }) });
+      });
+    }
+  }, {
+    key: 'shoot',
+    value: function shoot(id, data) {
+      _axios2.default.post('/battle/' + id + '/fire', { data: data }).then(function (response) {
+        console.log(response);
+      }).catch(function (error) {
+        console.log(error);
       });
     }
   }, {
@@ -19036,6 +19045,8 @@ var Layout = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
+      var _this5 = this;
+
       var _state = this.state,
           allBattles = _state.allBattles,
           selectBattle = _state.selectBattle;
@@ -19043,11 +19054,17 @@ var Layout = function (_Component) {
       var battleFieldGrid = void 0;
 
       if (selectBattle) {
-        var battle = selectBattle.battle;
-
+        var battle = selectBattle.battle,
+            battleId = selectBattle.battleId;
 
         battleFieldGrid = battle.battlefield.map(function (row, key) {
-          return _react2.default.createElement(_Row2.default, { key: key, battleFieldRow: row });
+          return _react2.default.createElement(_Row2.default, {
+            key: key,
+            rowIndex: key,
+            battleFieldRow: row,
+            shoot: _this5.shoot.bind(_this5),
+            battleId: battleId
+          });
         });
       }
       return _react2.default.createElement(
@@ -20704,12 +20721,19 @@ var Row = function (_Component) {
   _createClass(Row, [{
     key: 'render',
     value: function render() {
-      var battleFieldRow = this.props.battleFieldRow;
+      var _props = this.props,
+          battleFieldRow = _props.battleFieldRow,
+          shoot = _props.shoot,
+          rowIndex = _props.rowIndex,
+          battleId = _props.battleId;
 
-      var battleFieldRowList = battleFieldRow.map(function (rowStatus, key) {
+      var battleFieldRowList = battleFieldRow.map(function (rowStatus, index) {
+        // key = row index, index = col index
         return _react2.default.createElement(
           'li',
-          { className: 'column', key: key },
+          { className: 'column', key: index, onClick: function onClick() {
+              return shoot(battleId, { "coordinate": [rowIndex, index] });
+            } },
           rowStatus
         );
       });
@@ -20730,7 +20754,8 @@ var Row = function (_Component) {
 }(_react.Component);
 
 Row.PropTypes = {
-  battleFieldRow: _propTypes2.default.array
+  battleFieldRow: _propTypes2.default.array,
+  shoot: _propTypes2.default.func
 };
 
 Row.defaultProps = {
