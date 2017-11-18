@@ -18979,29 +18979,61 @@ var Layout = function (_Component) {
   function Layout() {
     _classCallCheck(this, Layout);
 
-    return _possibleConstructorReturn(this, (Layout.__proto__ || Object.getPrototypeOf(Layout)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (Layout.__proto__ || Object.getPrototypeOf(Layout)).call(this));
+
+    _this.state = {
+      allBattles: []
+    };
+    return _this;
   }
 
   _createClass(Layout, [{
-    key: 'componentWillMount',
-    value: function componentWillMount() {
-      _axios2.default.get('/battle', {
-        headers: {
-          'x-api-key': process.env.X_API_KEY
-        }
-      }).then(function (response) {
+    key: 'newBattle',
+    value: function newBattle() {
+      var _this2 = this;
+
+      _axios2.default.post('/battle').then(function (response) {
         console.log(response);
+        _this2.getBattles();
       }).catch(function (error) {
         console.log(error);
       });
     }
   }, {
+    key: 'getBattles',
+    value: function getBattles() {
+      var _this3 = this;
+
+      _axios2.default.get('/battle', {
+        headers: {
+          'x-api-key': process.env.X_API_KEY
+        }
+      }).then(function (res) {
+        var data = res.data;
+
+        _this3.setState({ allBattles: JSON.parse(data).battles });
+      }).catch(function (error) {
+        console.log(error);
+      });
+    }
+  }, {
+    key: 'componentWillMount',
+    value: function componentWillMount() {
+      this.getBattles();
+    }
+  }, {
     key: 'render',
     value: function render() {
+      var allBattles = this.state.allBattles;
+
+
       return _react2.default.createElement(
         'div',
         { className: 'wrapper' },
-        _react2.default.createElement(_LeftPanel2.default, null)
+        _react2.default.createElement(_LeftPanel2.default, {
+          newBattle: this.newBattle.bind(this),
+          allBattles: allBattles
+        })
       );
     }
   }]);
@@ -19943,16 +19975,49 @@ var LeftPanel = function (_Component) {
   _createClass(LeftPanel, [{
     key: 'render',
     value: function render() {
+      var _props = this.props,
+          newBattle = _props.newBattle,
+          allBattles = _props.allBattles;
+
+      var battleList = allBattles.map(function (battle, key) {
+        var battleId = battle.battleId;
+
+        return _react2.default.createElement(
+          'li',
+          { key: key },
+          battleId
+        );
+      });
       return _react2.default.createElement(
         'div',
         null,
-        'GameID'
+        _react2.default.createElement(
+          'ul',
+          null,
+          battleList
+        ),
+        _react2.default.createElement(
+          'button',
+          { onClick: newBattle },
+          'New Game'
+        )
       );
     }
   }]);
 
   return LeftPanel;
 }(_react.Component);
+
+// LeftPanel.propTypes = {
+//   newBattle: propTypes.func
+// }
+
+LeftPanel.defaultProps = {
+  newBattle: function newBattle() {
+    return false;
+  },
+  allBattles: []
+};
 
 exports.default = LeftPanel;
 
