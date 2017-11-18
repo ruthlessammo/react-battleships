@@ -1,15 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-
-class App extends Component {
-  render() {
-    return (
-      <div>Hello World</div>
-    )
-  }
-}
+import Layout from './components/Layout';
 
 ReactDOM.render(
-  <App />,
+  <Layout />,
   document.getElementById('grid')
 );
