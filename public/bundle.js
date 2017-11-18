@@ -20121,7 +20121,7 @@ exports = module.exports = __webpack_require__(57)(undefined);
 
 
 // module
-exports.push([module.i, "body {\n  background-color: papayawhip;\n  display: flex;\n  font-family: monospace;\n  font-size: 15px; }\n\n.row {\n  display: flex; }\n\n.column {\n  display: inline-flex;\n  background-color: white;\n  border: 1px solid black;\n  padding: 20px; }\n", ""]);
+exports.push([module.i, "body {\n  background-color: papayawhip;\n  display: flex;\n  font-family: monospace;\n  font-size: 15px; }\n\n.row {\n  display: flex; }\n\n.column {\n  display: inline-flex;\n  background-color: white;\n  border: 1px solid black;\n  padding: 20px; }\n\n.red {\n  color: red; }\n\n.blue {\n  background-color: blue; }\n", ""]);
 
 // exports
 
@@ -20730,10 +20730,14 @@ var Row = function (_Component) {
           battleId = _props.battleId;
 
       var battleFieldRowList = battleFieldRow.map(function (rowStatus, index) {
+        var colClass = (0, _classnames2.default)("column", {
+          'red': rowStatus.toString() === "5",
+          'blue': rowStatus.toString() === "0"
+        });
         // key = row index, index = col index
         return _react2.default.createElement(
           'li',
-          { className: 'column', key: index, onClick: function onClick() {
+          { className: colClass, key: index, onClick: function onClick() {
               return shoot(battleId, { coordinate: [rowIndex, index] });
             } },
           rowStatus
