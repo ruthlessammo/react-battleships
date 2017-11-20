@@ -15,9 +15,26 @@ body {
   padding: 20px;
 }
 
-.red {
-  color: red;
+.playerHit {
+  background-color: red;
 }
-.blue {
+
+.unknownWater {
   background-color: blue;
+}
+
+.playerShip {
+  background-color: grey;
+}
+
+.playerMiss {
+  background-color: yellow;
+}
+
+.enemyMiss {
+  background-color: orange;
+}
+
+.enemyHit {
+  background-color: black;
 }

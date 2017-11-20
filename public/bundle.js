@@ -20121,7 +20121,7 @@ exports = module.exports = __webpack_require__(57)(undefined);
 
 
 // module
-exports.push([module.i, "body {\n  background-color: papayawhip;\n  display: flex;\n  font-family: monospace;\n  font-size: 15px; }\n\n.row {\n  display: flex; }\n\n.column {\n  display: inline-flex;\n  background-color: white;\n  border: 1px solid black;\n  padding: 20px; }\n\n.red {\n  color: red; }\n\n.blue {\n  background-color: blue; }\n", ""]);
+exports.push([module.i, "body {\n  background-color: papayawhip;\n  display: flex;\n  font-family: monospace;\n  font-size: 15px; }\n\n.row {\n  display: flex; }\n\n.column {\n  display: inline-flex;\n  background-color: white;\n  border: 1px solid black;\n  padding: 20px; }\n\n.playerHit {\n  background-color: red; }\n\n.unknownWater {\n  background-color: blue; }\n\n.playerShip {\n  background-color: grey; }\n\n.playerMiss {\n  background-color: yellow; }\n\n.enemyMiss {\n  background-color: orange; }\n\n.enemyHit {\n  background-color: black; }\n", ""]);
 
 // exports
 
@@ -20731,8 +20731,12 @@ var Row = function (_Component) {
 
       var battleFieldRowList = battleFieldRow.map(function (rowStatus, index) {
         var colClass = (0, _classnames2.default)("column", {
-          'red': rowStatus.toString() === "5",
-          'blue': rowStatus.toString() === "0"
+          'playerHit': rowStatus.toString() === "4",
+          'unknownWater': rowStatus.toString() === "0",
+          'playerShip': rowStatus.toString() === "1",
+          'playerMiss': rowStatus.toString() === "5",
+          'enemyMiss': rowStatus.toString() === "6",
+          'enemyHit': rowStatus.toString() === "3"
         });
         // key = row index, index = col index
         return _react2.default.createElement(
