@@ -10,6 +10,7 @@ class Row extends Component {
 
   render() {
     const { battleFieldRow, shoot, rowIndex, battleId } = this.props
+    console.log(this.props);
     const battleFieldRowList = battleFieldRow.map((rowStatus, index) => {
       const colClass = classnames("column", {
         'playerHit': rowStatus.toString() === "4",
@@ -17,7 +18,8 @@ class Row extends Component {
         'playerShip': rowStatus.toString() === "1",
         'playerMiss': rowStatus.toString() === "5",
         'enemyMiss': rowStatus.toString() === "6",
-        'enemyHit': rowStatus.toString() === "3"
+        'enemyHit': rowStatus.toString() === "3",
+        // 'disableFire': rowStatus.toString() > "0"
       })
       // key = row index, index = col index
       return <li className={ colClass } key={index} onClick={() => shoot(battleId, { coordinate: [rowIndex, index] } )}>{rowStatus}</li>

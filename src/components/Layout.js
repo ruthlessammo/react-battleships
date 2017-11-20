@@ -83,12 +83,13 @@ class Layout extends Component {
           allBattles={ allBattles }
           setSelected={ this.selectBattle.bind(this) }
         />
-
-        { selectBattle ?
-          <ul>
-            { battleFieldGrid }
-          </ul>
-        : null }
+        <div className="rowWrapper">
+          { selectBattle ?
+            <ul>
+              { battleFieldGrid }
+            </ul>
+          : null }
+        </div>
       </div>
     )
   }

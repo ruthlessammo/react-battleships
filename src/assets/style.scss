@@ -4,6 +4,18 @@ body {
   font-family: monospace;
   font-size: 15px;
 }
+
+.wrapper {
+  width: 100vw;
+}
+
+.rowWrapper {
+  display: inline-block;
+  float: right;
+  margin-right: 200px;
+
+}
+
 .row {
   display: flex;
 }
@@ -37,4 +49,18 @@ body {
 
 .enemyHit {
   background-color: black;
+}
+
+// .disableFire {
+//   cursor: none;
+// }
+
+.battleList {
+  cursor: pointer;
+  list-style: none;
+}
+
+.leftPanelWrap {
+ display: inline-block;
+ margin-left: 100px;
 }

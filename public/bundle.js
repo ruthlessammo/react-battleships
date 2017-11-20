@@ -19077,11 +19077,15 @@ var Layout = function (_Component) {
           allBattles: allBattles,
           setSelected: this.selectBattle.bind(this)
         }),
-        selectBattle ? _react2.default.createElement(
-          'ul',
-          null,
-          battleFieldGrid
-        ) : null
+        _react2.default.createElement(
+          'div',
+          { className: 'rowWrapper' },
+          selectBattle ? _react2.default.createElement(
+            'ul',
+            null,
+            battleFieldGrid
+          ) : null
+        )
       );
     }
   }]);
@@ -20037,7 +20041,7 @@ var LeftPanel = function (_Component) {
 
         return _react2.default.createElement(
           'li',
-          { onClick: function onClick() {
+          { className: 'battleList', onClick: function onClick() {
               return setSelected(battleId);
             }, key: key },
           battleId
@@ -20045,7 +20049,7 @@ var LeftPanel = function (_Component) {
       });
       return _react2.default.createElement(
         'div',
-        null,
+        { className: 'leftPanelWrap' },
         _react2.default.createElement(
           'ul',
           null,
@@ -20121,7 +20125,7 @@ exports = module.exports = __webpack_require__(57)(undefined);
 
 
 // module
-exports.push([module.i, "body {\n  background-color: papayawhip;\n  display: flex;\n  font-family: monospace;\n  font-size: 15px; }\n\n.row {\n  display: flex; }\n\n.column {\n  display: inline-flex;\n  background-color: white;\n  border: 1px solid black;\n  padding: 20px; }\n\n.playerHit {\n  background-color: red; }\n\n.unknownWater {\n  background-color: blue; }\n\n.playerShip {\n  background-color: grey; }\n\n.playerMiss {\n  background-color: yellow; }\n\n.enemyMiss {\n  background-color: orange; }\n\n.enemyHit {\n  background-color: black; }\n", ""]);
+exports.push([module.i, "body {\n  background-color: papayawhip;\n  display: flex;\n  font-family: monospace;\n  font-size: 15px; }\n\n.wrapper {\n  width: 100vw; }\n\n.rowWrapper {\n  display: inline-block;\n  float: right;\n  margin-right: 200px; }\n\n.row {\n  display: flex; }\n\n.column {\n  display: inline-flex;\n  background-color: white;\n  border: 1px solid black;\n  padding: 20px; }\n\n.playerHit {\n  background-color: red; }\n\n.unknownWater {\n  background-color: blue; }\n\n.playerShip {\n  background-color: grey; }\n\n.playerMiss {\n  background-color: yellow; }\n\n.enemyMiss {\n  background-color: orange; }\n\n.enemyHit {\n  background-color: black; }\n\n.battleList {\n  cursor: pointer;\n  list-style: none; }\n\n.leftPanelWrap {\n  display: inline-block;\n  margin-left: 100px; }\n", ""]);
 
 // exports
 
@@ -20729,6 +20733,7 @@ var Row = function (_Component) {
           rowIndex = _props.rowIndex,
           battleId = _props.battleId;
 
+      console.log(this.props);
       var battleFieldRowList = battleFieldRow.map(function (rowStatus, index) {
         var colClass = (0, _classnames2.default)("column", {
           'playerHit': rowStatus.toString() === "4",
@@ -20737,6 +20742,7 @@ var Row = function (_Component) {
           'playerMiss': rowStatus.toString() === "5",
           'enemyMiss': rowStatus.toString() === "6",
           'enemyHit': rowStatus.toString() === "3"
+          // 'disableFire': rowStatus.toString() > "0"
         });
         // key = row index, index = col index
         return _react2.default.createElement(

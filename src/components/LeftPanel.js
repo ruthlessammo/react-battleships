@@ -10,11 +10,11 @@ class LeftPanel extends Component {
     const battleList = allBattles.map((battle, key) => {
       const { battleId } = battle;
       return (
-        <li onClick={()=> setSelected(battleId) } key={ key }>{ battleId }</li>
+        <li className="battleList" onClick={()=> setSelected(battleId) } key={ key }>{ battleId }</li>
       )
     })
     return (
-      <div>
+      <div className="leftPanelWrap">
         <ul>
           { battleList }
         </ul>
