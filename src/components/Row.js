@@ -19,7 +19,7 @@ class Row extends Component {
         'playerMiss': rowStatus.toString() === "5",
         'enemyMiss': rowStatus.toString() === "6",
         'enemyHit': rowStatus.toString() === "3",
-        // 'disableFire': rowStatus.toString() > "0"
+        'disableFire': rowStatus.toString() > "0"
       })
       // key = row index, index = col index
       return <li className={ colClass } key={index} onClick={() => shoot(battleId, { coordinate: [rowIndex, index] } )}>{rowStatus}</li>

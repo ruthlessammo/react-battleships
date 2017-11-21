@@ -1,5 +1,5 @@
 body {
-  background-color: papayawhip;
+  background-color: #5080ab;
   display: flex;
   font-family: monospace;
   font-size: 15px;
@@ -13,6 +13,7 @@ body {
   display: inline-block;
   float: right;
   margin-right: 200px;
+  margin-top: 12.5px;
 
 }
 
@@ -51,16 +52,27 @@ body {
   background-color: black;
 }
 
-// .disableFire {
-//   cursor: none;
-// }
+.disableFire {
+  cursor: none;
+}
 
 .battleList {
   cursor: pointer;
   list-style: none;
+  color: white;
 }
 
 .leftPanelWrap {
  display: inline-block;
- margin-left: 100px;
+ margin-left: 50px;
+ width: 500px;
+ height: 600px;
+ overflow: scroll;
+ border: white dashed 1px;
+ margin-top: 25px;
+  ul {
+    li {
+      padding-left: 95px;
+    }
+  }
 }

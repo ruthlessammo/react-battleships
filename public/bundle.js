@@ -20125,7 +20125,7 @@ exports = module.exports = __webpack_require__(57)(undefined);
 
 
 // module
-exports.push([module.i, "body {\n  background-color: papayawhip;\n  display: flex;\n  font-family: monospace;\n  font-size: 15px; }\n\n.wrapper {\n  width: 100vw; }\n\n.rowWrapper {\n  display: inline-block;\n  float: right;\n  margin-right: 200px; }\n\n.row {\n  display: flex; }\n\n.column {\n  display: inline-flex;\n  background-color: white;\n  border: 1px solid black;\n  padding: 20px; }\n\n.playerHit {\n  background-color: red; }\n\n.unknownWater {\n  background-color: blue; }\n\n.playerShip {\n  background-color: grey; }\n\n.playerMiss {\n  background-color: yellow; }\n\n.enemyMiss {\n  background-color: orange; }\n\n.enemyHit {\n  background-color: black; }\n\n.battleList {\n  cursor: pointer;\n  list-style: none; }\n\n.leftPanelWrap {\n  display: inline-block;\n  margin-left: 100px; }\n", ""]);
+exports.push([module.i, "body {\n  background-color: #5080ab;\n  display: flex;\n  font-family: monospace;\n  font-size: 15px; }\n\n.wrapper {\n  width: 100vw; }\n\n.rowWrapper {\n  display: inline-block;\n  float: right;\n  margin-right: 200px;\n  margin-top: 12.5px; }\n\n.row {\n  display: flex; }\n\n.column {\n  display: inline-flex;\n  background-color: white;\n  border: 1px solid black;\n  padding: 20px; }\n\n.playerHit {\n  background-color: red; }\n\n.unknownWater {\n  background-color: blue; }\n\n.playerShip {\n  background-color: grey; }\n\n.playerMiss {\n  background-color: yellow; }\n\n.enemyMiss {\n  background-color: orange; }\n\n.enemyHit {\n  background-color: black; }\n\n.disableFire {\n  cursor: none; }\n\n.battleList {\n  cursor: pointer;\n  list-style: none;\n  color: white; }\n\n.leftPanelWrap {\n  display: inline-block;\n  margin-left: 50px;\n  width: 500px;\n  height: 600px;\n  overflow: scroll;\n  border: white dashed 1px;\n  margin-top: 25px; }\n  .leftPanelWrap ul li {\n    padding-left: 95px; }\n", ""]);
 
 // exports
 
@@ -20741,8 +20741,8 @@ var Row = function (_Component) {
           'playerShip': rowStatus.toString() === "1",
           'playerMiss': rowStatus.toString() === "5",
           'enemyMiss': rowStatus.toString() === "6",
-          'enemyHit': rowStatus.toString() === "3"
-          // 'disableFire': rowStatus.toString() > "0"
+          'enemyHit': rowStatus.toString() === "3",
+          'disableFire': rowStatus.toString() > "0"
         });
         // key = row index, index = col index
         return _react2.default.createElement(
